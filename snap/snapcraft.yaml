@@ -1,5 +1,5 @@
 name: asciinema2video
-version: "1.0.0"
+version: "1.0.1"
 summary: Convert asciinema recordings to video
 description: |
   A simple CLI tool to convert asciinema recordings (.cast files)

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-02-28
+
+### Fixed
+- README demo now displays correctly on GitHub (changed from video to GIF format)
+
 ## [1.0.0] - 2026-02-28
 
 ### Added

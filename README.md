@@ -84,23 +84,23 @@ snap install asciinema2video
 ### DEB package (Ubuntu/Debian)
 
 ```bash
-wget https://github.com/spagu/asciinema2video/releases/download/v1.0.0/asciinema2video_1.0.0_amd64.deb
-sudo dpkg -i asciinema2video_1.0.0_amd64.deb
+wget https://github.com/spagu/asciinema2video/releases/download/v1.0.1/asciinema2video_1.0.1_amd64.deb
+sudo dpkg -i asciinema2video_1.0.1_amd64.deb
 ```
 
 ### RPM package (Fedora/RHEL/CentOS)
 
 ```bash
-wget https://github.com/spagu/asciinema2video/releases/download/v1.0.0/asciinema2video_1.0.0_amd64.rpm
-sudo rpm -i asciinema2video_1.0.0_amd64.rpm
+wget https://github.com/spagu/asciinema2video/releases/download/v1.0.1/asciinema2video_1.0.1_amd64.rpm
+sudo rpm -i asciinema2video_1.0.1_amd64.rpm
 ```
 
 ### FreeBSD
 
 ```bash
 # Download from releases
-wget https://github.com/spagu/asciinema2video/releases/download/v1.0.0/asciinema2video_1.0.0_freebsd_amd64.tar.gz
-tar xzf asciinema2video_1.0.0_freebsd_amd64.tar.gz
+wget https://github.com/spagu/asciinema2video/releases/download/v1.0.1/asciinema2video_1.0.1_freebsd_amd64.tar.gz
+tar xzf asciinema2video_1.0.1_freebsd_amd64.tar.gz
 sudo mv asciinema2video /usr/local/bin/
 ```
 
