@@ -94,25 +94,6 @@ brews:
     test: |
       system "#{bin}/asciinema2video", "--version"
 
-# Snapcraft
-snapcrafts:
-  - id: snap
-    name: asciinema2video
-    summary: Convert asciinema recordings to video
-    description: |
-      A simple CLI tool to convert asciinema recordings (.cast files)
-      to video formats (MP4, GIF, WebP, WebM, MOV).
-    grade: stable
-    confinement: strict
-    license: BSD-3-Clause
-    publish: true
-    apps:
-      asciinema2video:
-        command: asciinema2video
-        plugs:
-          - home
-          - removable-media
-
 # GitHub release
 release:
   github:
