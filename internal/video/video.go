@@ -20,16 +20,25 @@ func Create(framesDir, outputPath string, fps int) error {
 
 // CreateWithOptions generates a video file with additional options
 func CreateWithOptions(framesDir, outputPath string, fps int, opts *CreateOptions) error {
-	if _, err := exec.LookPath("ffmpeg"); err != nil {
-		return fmt.Errorf("ffmpeg not found in PATH: %w", err)
-	}
-
 	if opts == nil {
 		opts = &CreateOptions{}
 	}
 
-	inputPattern := filepath.Join(framesDir, "frame_%06d.png")
 	ext := strings.ToLower(filepath.Ext(outputPath))
+
+	// Validate format before checking for ffmpeg
+	switch ext {
+	case ".gif", ".webp", ".mp4", ".webm", ".mov":
+		// Valid format
+	default:
+		return fmt.Errorf("unsupported output format: %s (supported: mp4, gif, webp, webm, mov)", ext)
+	}
+
+	if _, err := exec.LookPath("ffmpeg"); err != nil {
+		return fmt.Errorf("ffmpeg not found in PATH: %w", err)
+	}
+
+	inputPattern := filepath.Join(framesDir, "frame_%06d.png")
 
 	var args []string
 
@@ -139,9 +148,6 @@ func CreateWithOptions(framesDir, outputPath string, fps int, opts *CreateOption
 				outputPath,
 			}
 		}
-
-	default:
-		return fmt.Errorf("unsupported output format: %s (supported: mp4, gif, webp, webm, mov)", ext)
 	}
 
 	cmd := exec.Command("ffmpeg", args...)
