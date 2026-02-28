@@ -203,8 +203,12 @@ func Get256Color(n int) color.RGBA {
 		b := uint8((n % 6) * 51)
 		return color.RGBA{r, g, b, 255}
 	}
-	gray := uint8((n-232)*10 + 8)
-	return color.RGBA{gray, gray, gray, 255}
+	// Grayscale: n is 232-255, result is 8-238
+	grayVal := (n-232)*10 + 8
+	if grayVal > 255 {
+		grayVal = 255
+	}
+	return color.RGBA{uint8(grayVal), uint8(grayVal), uint8(grayVal), 255}
 }
 
 func parseHexColor(hex string) color.RGBA {
