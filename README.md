@@ -1,8 +1,11 @@
 # asciinema2video
 
+[![CI](https://github.com/spagu/asciinema2video/actions/workflows/ci.yaml/badge.svg)](https://github.com/spagu/asciinema2video/actions/workflows/ci.yaml)
+[![Release](https://img.shields.io/github/v/release/spagu/asciinema2video)](https://github.com/spagu/asciinema2video/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/spagu/asciinema2video)](https://goreportcard.com/report/github.com/spagu/asciinema2video)
 [![Go Version](https://img.shields.io/badge/Go-1.26-blue.svg)](https://golang.org)
 [![License](https://img.shields.io/badge/License-BSD--3--Clause-green.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/spagu/asciinema2video)](https://github.com/spagu/asciinema2video/releases)
+[![Downloads](https://img.shields.io/github/downloads/spagu/asciinema2video/total)](https://github.com/spagu/asciinema2video/releases)
 
 Simple CLI tool to convert [asciinema](https://asciinema.org/) recordings (`.cast` files) to video formats (MP4, GIF, WebP, WebM, MOV).
 
