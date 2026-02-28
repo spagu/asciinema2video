@@ -1,0 +1,32 @@
+name: asciinema2video
+version: "1.0.0"
+summary: Convert asciinema recordings to video
+description: |
+  A simple CLI tool to convert asciinema recordings (.cast files)
+  to video formats (MP4, GIF, WebP, WebM, MOV).
+
+  Features:
+  - Multiple output formats with transparency support
+  - Customizable color themes
+  - Rounded corners and borders
+  - Custom fonts
+
+grade: stable
+confinement: strict
+base: core22
+
+apps:
+  asciinema2video:
+    command: bin/asciinema2video
+    plugs:
+      - home
+      - removable-media
+
+parts:
+  asciinema2video:
+    plugin: go
+    source: .
+    build-snaps:
+      - go/1.26/stable
+    override-build: |
+      go build -ldflags "-s -w" -o $SNAPCRAFT_PART_INSTALL/bin/asciinema2video ./cmd/asciinema2video

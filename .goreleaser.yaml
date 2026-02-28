@@ -1,0 +1,125 @@
+version: 2
+
+project_name: asciinema2video
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: asciinema2video
+    main: ./cmd/asciinema2video
+    binary: asciinema2video
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - freebsd
+      - windows
+    goarch:
+      - amd64
+      - arm64
+      - arm
+    goarm:
+      - "7"
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: default
+    format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+      - CHANGELOG.md
+      - install.sh
+      - man/asciinema2video.1
+      - docs/*
+      - examples/*
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ .Tag }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+# Linux packages
+nfpms:
+  - id: packages
+    package_name: asciinema2video
+    vendor: spagu
+    homepage: https://github.com/spagu/asciinema2video
+    maintainer: spagu
+    description: Convert asciinema recordings to video
+    license: BSD-3-Clause
+    formats:
+      - deb
+      - rpm
+    dependencies:
+      - ffmpeg
+    bindir: /usr/bin
+    contents:
+      - src: LICENSE
+        dst: /usr/share/licenses/asciinema2video/LICENSE
+      - src: README.md
+        dst: /usr/share/doc/asciinema2video/README.md
+      - src: man/asciinema2video.1
+        dst: /usr/share/man/man1/asciinema2video.1
+        file_info:
+          mode: 0644
+
+# Homebrew
+brews:
+  - name: asciinema2video
+    repository:
+      owner: spagu
+      name: homebrew-tap
+    homepage: https://github.com/spagu/asciinema2video
+    description: Convert asciinema recordings to video
+    license: BSD-3-Clause
+    dependencies:
+      - name: ffmpeg
+    install: |
+      bin.install "asciinema2video"
+      man1.install "man/asciinema2video.1"
+    test: |
+      system "#{bin}/asciinema2video", "--version"
+
+# Snapcraft
+snapcrafts:
+  - id: snap
+    name: asciinema2video
+    summary: Convert asciinema recordings to video
+    description: |
+      A simple CLI tool to convert asciinema recordings (.cast files)
+      to video formats (MP4, GIF, WebP, WebM, MOV).
+    grade: stable
+    confinement: strict
+    license: BSD-3-Clause
+    publish: true
+    apps:
+      asciinema2video:
+        command: asciinema2video
+        plugs:
+          - home
+          - removable-media
+
+# GitHub release
+release:
+  github:
+    owner: spagu
+    name: asciinema2video
+  draft: false
+  prerelease: auto

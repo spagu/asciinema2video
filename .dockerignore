@@ -1,0 +1,28 @@
+# Binaries
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Output files
+*.mp4
+*.gif
+*.webp
+*.cast
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+
+# Docs
+README.md
+CHANGELOG.md
+LICENSE
+
+# Test
+*_test.go

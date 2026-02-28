@@ -1,0 +1,23 @@
+{
+  "name": "custom",
+  "foreground": "#f8f8f2",
+  "background": "#282a36",
+  "colors": [
+    "#21222c",
+    "#ff5555",
+    "#50fa7b",
+    "#f1fa8c",
+    "#bd93f9",
+    "#ff79c6",
+    "#8be9fd",
+    "#f8f8f2",
+    "#6272a4",
+    "#ff6e67",
+    "#5af78e",
+    "#f4f99d",
+    "#caa9fa",
+    "#ff92d0",
+    "#9aedfe",
+    "#ffffff"
+  ]
+}

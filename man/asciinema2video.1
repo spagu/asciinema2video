@@ -1,0 +1,198 @@
+.TH ASCIINEMA2VIDEO 1 "February 2026" "asciinema2video 1.0.0" "User Commands"
+.SH NAME
+asciinema2video \- convert asciinema recordings to video
+.SH SYNOPSIS
+.B asciinema2video
+[\fIOPTIONS\fR]
+.B \-i
+\fIINPUT\fR
+[\fB\-o\fR \fIOUTPUT\fR]
+.SH DESCRIPTION
+.B asciinema2video
+converts asciinema terminal recordings (.cast files) to video formats
+including MP4, GIF, WebP, WebM, and MOV.
+.PP
+Features include customizable color themes, rounded corners, borders,
+transparent backgrounds, and custom fonts.
+.SH OPTIONS
+.SS "Input/Output Options"
+.TP
+.BR \-i ", " \-\-input =\fIFILE\fR
+Input .cast file (required).
+.TP
+.BR \-o ", " \-\-output =\fIFILE\fR
+Output file. Supported formats: mp4, gif, webp, webm, mov.
+Default: input filename with .mp4 extension.
+.SS "Rendering Options"
+.TP
+.BR \-\-fps =\fINUM\fR
+Frames per second. Default: 10.
+.TP
+.BR \-\-font\-size =\fIPIXELS\fR
+Font size in pixels. Default: 14.
+.TP
+.BR \-\-font =\fIPATH\fR
+Path to custom TTF font file. Default: Go Mono.
+.TP
+.BR \-\-padding =\fIPIXELS\fR
+Padding around terminal content. Default: 16.
+.TP
+.BR \-\-cols =\fINUM\fR
+Override terminal width. Default: from cast file.
+.TP
+.BR \-\-rows =\fINUM\fR
+Override terminal height. Default: from cast file.
+.SS "Theme Options"
+.TP
+.BR \-\-theme =\fINAME\fR
+Color theme name. Available: default, monokai, dracula, solarized-dark, nord, gruvbox.
+Default: default.
+.TP
+.BR \-\-theme\-file =\fIPATH\fR
+Path to custom theme JSON file.
+.TP
+.BR \-\-list\-themes
+List available built-in themes and exit.
+.SS "Border Options"
+.TP
+.BR \-\-border
+Enable border around terminal.
+.TP
+.BR \-\-border\-width =\fIPIXELS\fR
+Border width in pixels. Default: 2.
+.TP
+.BR \-\-border\-color =\fIHEX\fR
+Border color in hex format. Default: #646464.
+.TP
+.BR \-\-border\-radius =\fIPIXELS\fR
+Border radius for rounded corners. Default: 0.
+.SS "Background Options"
+.TP
+.BR \-\-outer\-bg =\fIHEX\fR
+Outer background color (visible with rounded corners). Default: #000000.
+.TP
+.BR \-\-transparent
+Enable transparent background. Supported for webm and mov formats.
+.SS "Video Options"
+.TP
+.BR \-\-codec =\fINAME\fR
+Video codec for MP4 output. Available: h264, h265. Default: h264.
+.SS "Other Options"
+.TP
+.BR \-q ", " \-\-quiet
+Suppress output messages.
+.TP
+.BR \-v ", " \-\-version
+Print version information and exit.
+.TP
+.BR \-h ", " \-\-help
+Print help message and exit.
+.SH OUTPUT FORMATS
+.TP
+.B MP4
+H.264 or H.265 encoded video. Most compatible format. Use \\-\\-codec to select.
+.TP
+.B GIF
+Animated GIF. Good for documentation, but large file sizes.
+.TP
+.B WebP
+Animated WebP. Smaller than GIF, good for web.
+.TP
+.B WebM
+VP9 encoded video. Supports transparency with \-\-transparent flag.
+.TP
+.B MOV
+ProRes 4444 encoded video. Supports alpha channel with \-\-transparent flag.
+Suitable for professional video editing.
+.SH EXAMPLES
+.PP
+Convert to MP4:
+.RS
+.nf
+asciinema2video -i demo.cast -o demo.mp4
+.fi
+.RE
+.PP
+Convert to GIF:
+.RS
+.nf
+asciinema2video -i demo.cast -o demo.gif
+.fi
+.RE
+.PP
+Use Dracula theme with rounded corners:
+.RS
+.nf
+asciinema2video -i demo.cast -o demo.mp4 \\
+    --theme dracula --border --border-radius 12
+.fi
+.RE
+.PP
+Create transparent WebM for overlays:
+.RS
+.nf
+asciinema2video -i demo.cast -o demo.webm \\
+    --transparent --border --border-radius 20
+.fi
+.RE
+.PP
+High-quality video for editing:
+.RS
+.nf
+asciinema2video -i demo.cast -o demo.mov \\
+    --transparent --fps 30 --font-size 18
+.fi
+.RE
+.PP
+Custom theme and font:
+.RS
+.nf
+asciinema2video -i demo.cast -o demo.mp4 \\
+    --theme-file my-theme.json \\
+    --font /path/to/JetBrainsMono.ttf \\
+    --font-size 16
+.fi
+.RE
+.SH CUSTOM THEME FILE
+.PP
+Create a JSON file with the following structure:
+.RS
+.nf
+{
+  "name": "my-theme",
+  "foreground": "#e0e0e0",
+  "background": "#1e1e1e",
+  "colors": [
+    "#000000", "#ff0000", "#00ff00", "#ffff00",
+    "#0000ff", "#ff00ff", "#00ffff", "#ffffff",
+    "#808080", "#ff8080", "#80ff80", "#ffff80",
+    "#8080ff", "#ff80ff", "#80ffff", "#ffffff"
+  ]
+}
+.fi
+.RE
+.PP
+The colors array contains 16 ANSI colors (standard and bright variants).
+.SH REQUIREMENTS
+.B ffmpeg
+must be installed and available in PATH.
+.SH FILES
+.TP
+.I ~/.config/asciinema2video/themes/
+User custom themes directory (optional).
+.SH EXIT STATUS
+.TP
+.B 0
+Successful completion.
+.TP
+.B 1
+An error occurred.
+.SH SEE ALSO
+.BR asciinema (1),
+.BR ffmpeg (1)
+.SH BUGS
+Report bugs at: https://github.com/spagu/asciinema2video/issues
+.SH AUTHOR
+Written by spagu.
+.SH COPYRIGHT
+Copyright \(co 2026 spagu. License BSD-3-Clause.
