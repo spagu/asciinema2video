@@ -27,5 +27,5 @@ All notable changes to this project will be documented in this file.
 - Quiet mode (--quiet) with timing and file size output
 - CLI with cobra framework
 - curl install script
-- Release packages: deb, rpm, brew, snap, freebsd
+- Release packages: deb, rpm, brew, freebsd
 - Man pages

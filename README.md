@@ -75,12 +75,6 @@ Download the latest release for your platform from [GitHub Releases](https://git
 brew install spagu/tap/asciinema2video
 ```
 
-### Snap (Ubuntu/Linux)
-
-```bash
-snap install asciinema2video
-```
-
 ### DEB package (Ubuntu/Debian)
 
 ```bash
