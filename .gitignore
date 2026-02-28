@@ -7,7 +7,6 @@ bin/
 
 # Output files
 *.mp4
-*.gif
 *.webp
 *.mov
 
