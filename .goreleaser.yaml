@@ -16,23 +16,20 @@ builds:
       - linux
       - darwin
       - freebsd
-      - windows
     goarch:
       - amd64
       - arm64
-      - arm
-    goarm:
-      - "7"
+    ignore:
+      - goos: freebsd
+        goarch: arm64
     ldflags:
       - -s -w -X main.version={{.Version}}
 
 archives:
   - id: default
-    format: tar.gz
+    formats:
+      - tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    format_overrides:
-      - goos: windows
-        format: zip
     files:
       - README.md
       - LICENSE

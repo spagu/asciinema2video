@@ -11,7 +11,7 @@ Simple CLI tool to convert [asciinema](https://asciinema.org/) recordings (`.cas
 
 ## Demo
 
-<video src="examples/themes/demo-solarized.webm" autoplay loop muted playsinline></video>
+![Demo](examples/themes/demo-solarized.gif)
 
 *Solarized Dark theme with rounded corners*
 
@@ -40,16 +40,6 @@ sudo apt update && sudo apt install ffmpeg
 **macOS (Homebrew):**
 ```bash
 brew install ffmpeg
-```
-
-**Windows (Chocolatey):**
-```bash
-choco install ffmpeg
-```
-
-**Windows (Scoop):**
-```bash
-scoop install ffmpeg
 ```
 
 **Arch Linux:**

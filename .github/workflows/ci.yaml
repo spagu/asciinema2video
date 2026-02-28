@@ -48,11 +48,9 @@ jobs:
     needs: [test, lint]
     strategy:
       matrix:
-        goos: [linux, darwin, freebsd, windows]
+        goos: [linux, darwin, freebsd]
         goarch: [amd64, arm64]
         exclude:
-          - goos: windows
-            goarch: arm64
           - goos: freebsd
             goarch: arm64
     steps:

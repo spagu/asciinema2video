@@ -34,7 +34,6 @@ detect_os() {
         Linux*)     OS=linux;;
         Darwin*)    OS=darwin;;
         FreeBSD*)   OS=freebsd;;
-        MINGW*|MSYS*|CYGWIN*) OS=windows;;
         *)          error "Unsupported OS: ${OS}";;
     esac
     echo "${OS}"
@@ -77,11 +76,7 @@ install() {
     info "Installing ${BINARY_NAME} ${VERSION} for ${OS}/${ARCH}"
 
     # Construct download URL
-    if [ "${OS}" = "windows" ]; then
-        FILENAME="${BINARY_NAME}_${VERSION#v}_${OS}_${ARCH}.zip"
-    else
-        FILENAME="${BINARY_NAME}_${VERSION#v}_${OS}_${ARCH}.tar.gz"
-    fi
+    FILENAME="${BINARY_NAME}_${VERSION#v}_${OS}_${ARCH}.tar.gz"
 
     URL="https://github.com/${REPO}/releases/download/${VERSION}/${FILENAME}"
 
@@ -100,11 +95,7 @@ install() {
 
     # Extract
     cd "${TMP_DIR}"
-    if [ "${OS}" = "windows" ]; then
-        unzip -q "${FILENAME}" || error "Extraction failed"
-    else
-        tar xzf "${FILENAME}" || error "Extraction failed"
-    fi
+    tar xzf "${FILENAME}" || error "Extraction failed"
 
     # Install binary
     if [ -w "${INSTALL_DIR}" ]; then
