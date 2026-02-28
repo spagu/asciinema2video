@@ -72,7 +72,7 @@ jobs:
           go build -ldflags "-s -w" -o asciinema2video-${{ matrix.goos }}-${{ matrix.goarch }} ./cmd/asciinema2video
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: asciinema2video-${{ matrix.goos }}-${{ matrix.goarch }}
           path: asciinema2video-${{ matrix.goos }}-${{ matrix.goarch }}
