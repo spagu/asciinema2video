@@ -83,6 +83,7 @@ brews:
     repository:
       owner: spagu
       name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
     homepage: https://github.com/spagu/asciinema2video
     description: Convert asciinema recordings to video
     license: BSD-3-Clause
